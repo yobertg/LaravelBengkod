@@ -16,8 +16,12 @@ class User extends Authenticatable
         'no_hp',
         'email',
         'password',
-        'role',
+        'id_poli',
+        'no_ktp',
+        'no_rm',
+        'role'
     ];
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -31,19 +35,20 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * Relasi One to Many dengan tabel periksas sebagai pasien.
-     */
-    public function periksasSebagaiPasien()
+    public function jadwalPeriksa()
     {
-        return $this->hasMany(Periksa::class, 'id_pasien');
+       return $this->hasMany(JadwalPeriksa::class, 'id_dokter');
+    }
+    public function poli()
+    {
+        return $this->belongsTo(Poli::class, 'id_poli');
     }
 
-    /**
-     * Relasi One to Many dengan tabel periksas sebagai dokter.
-     */
-    public function periksasSebagaiDokter()
+    public function daftarPoli()
     {
-        return $this->hasMany(Periksa::class, 'id_dokter');
+        return $this->hasMany(DaftarPoli::class, 'id_pasien');
     }
+
+
+    // Relasi-relasi bisa ditambahkan kembali di sini jika dibutuhkan
 }

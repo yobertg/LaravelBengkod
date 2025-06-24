@@ -9,20 +9,15 @@
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                         Dashboard
+                        <span class="badge badge-warning right">pasien</span>
                     </p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('pasien.periksa') }}" class="nav-link ">
+                <a href="{{ route('pasien.daftar-poli') }}" class="nav-link ">
                     <p>
-                        Periksa
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('pasien.riwayat') }}" class="nav-link ">
-                    <p>
-                        Riwayat
+                        Poli
+                        <span class="badge badge-warning right">pasien</span>
                     </p>
                 </a>
             </li>

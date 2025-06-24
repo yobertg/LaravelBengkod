@@ -188,7 +188,7 @@
           <img src="{{asset('lte/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{Auth::user()->nama}}</a>
         </div>
       </div>
 
@@ -279,5 +279,6 @@
 <script src="{{asset('lte/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('lte/dist/js/pages/dashboard.js')}}"></script>
+@stack('scripts')
 </body>
 </html>

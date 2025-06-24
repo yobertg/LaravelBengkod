@@ -2,7 +2,7 @@
 @section('sidebar')
 
     <li class="nav-item menu-open">
-      <a href="#" class="nav-link {{ Request::is('/') ? 'active' : '' }}">
+      <a href="/admin" class="nav-link {{ Request::is('/admin') ? 'active' : '' }}">
         <i class="nav-icon fas fa-tachometer-alt"></i>
         <p>
           Dashboard
@@ -12,54 +12,54 @@
     </li>
 
     <li class="nav-item">
-      <a href="/dokter/jadwalPeriksa" class="nav-link {{ Request::is('dokter/jadwalPeriksa*') ? 'active' : '' }}">
+      <a href="/admin/poli" class="nav-link {{ Request::is('admin/poli*') ? 'active' : '' }}">
         <i class="nav-icon fas fa-th"></i>
         <p>
-          Jadwal Periksa
+          Poli
           <span class="right badge badge-danger">New</span>
         </p>
       </a>
     </li>
 
     <li class="nav-item">
-      <a href="/dokter/polis" class="nav-link {{ Request::is('dokter/polis*') ? 'active' : '' }}">
+      <a href="/admin/obat" class="nav-link {{ Request::is('admin/obat*') ? 'active' : '' }}">
         <i class="nav-icon far fa-calendar-alt"></i>
         <p>
-          Memeriksa Pasien
-          <span class="badge badge-info right">dokter</span>
+          Obat
+          
         </p>
       </a>
     </li>
-    <li class="nav-item">
-      <a href="/dokter/riwayatPasien" class="nav-link {{ Request::is('dokter/riwayatPasien*') ? 'active' : '' }}">
+      <li class="nav-item">
+      <a href="/admin/pasien" class="nav-link {{ Request::is('admin/pasien*') ? 'active' : '' }}">
         <i class="nav-icon far fa-calendar-alt"></i>
         <p>
-          Riwayat Pasien
-          <span class="badge badge-info right">dokter</span>
+          Pasien
+          
         </p>
       </a>
     </li>
-    <li class="nav-item">
-      <a href="/dokter/profile" class="nav-link {{ Request::is('dokter/profile*') ? 'active' : '' }}">
+      <li class="nav-item">
+      <a href="/admin/dokter" class="nav-link {{ Request::is('admin/dokter*') ? 'active' : '' }}">
         <i class="nav-icon far fa-calendar-alt"></i>
         <p>
-          Profile
-          <span class="badge badge-info right">dokter</span>
+          Dokter
+          
         </p>
       </a>
     </li>
-    
+
     <li class="nav-item">
-        <form action={{route('auth.logout.post')}} method="post">
-            @csrf
-        
-        <button type="submit" class="nav-link ">
-        <p>
-          Logout
-        </p>
-        </button>
-        </form>
-     </li>
+      <form action={{route('auth.logout.post')}} method="post">
+          @csrf
+      
+      <button type="submit" class="nav-link ">
+      <p>
+        Logout
+      </p>
+      </button>
+      </form>
+   </li>
 
 @endsection
 @section('content')
@@ -68,7 +68,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Dokter</h1>
+            <h1>Dashboard Admin</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -89,9 +89,9 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{ $jumlahDokter}}</h3>
 
-                <p>Jumlah Pasien yang Perlu Diperiksa</p>
+                <p>Jumlah Dokter</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -104,9 +104,9 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>{{$jumlahPasien}}<sup style="font-size: 20px"></sup></h3>
 
-                <p>Jumlah Obat</p>
+                <p>Jumlah Pasien</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -119,9 +119,9 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{$jumlahPoli}}</h3>
 
-                <p>User Registrations</p>
+                <p>Jumlah Poli</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -130,20 +130,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
-
-                <p>Unique Visitors</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
+          
           <!-- ./col -->
         </div>
         <!-- /.row -->

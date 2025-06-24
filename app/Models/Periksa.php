@@ -10,30 +10,21 @@ class Periksa extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_pasien',
-        'id_dokter',
+        'id_daftar_poli',
         'tgl_periksa',
         'catatan',
         'biaya_periksa',
     ];
 
     /**
-     * Relasi ke User sebagai pasien
+     * Relasi ke DaftarPoli
      */
-    public function pasien()
+    public function daftarPoli()
     {
-        return $this->belongsTo(User::class, 'id_pasien');
+        return $this->belongsTo(DaftarPoli::class, 'id_daftar_poli');
     }
 
     /**
-     * Relasi ke User sebagai dokter
-     */
-    public function dokter()
-    {
-        return $this->belongsTo(User::class, 'id_dokter');
-    }
-
-     /**
      * Relasi One to Many dengan DetailPeriksa
      * Satu Periksa bisa memiliki banyak DetailPeriksa
      */

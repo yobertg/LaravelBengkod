@@ -33,6 +33,9 @@ class AuthController extends Controller
             elseif (Auth::user()->role == 'pasien') {
                 return redirect()->route('pasien.dashboard');
             }
+            elseif (Auth::user()->role == 'admin') {
+                return redirect()->route('admin.dashboard');
+            }
             else {
                 return redirect()->route('login');
             }
@@ -45,28 +48,43 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
     
-    public function storeAkun(Request $request)
+   public function storeAkun(Request $request)
     {
         $validateData = $request->validate([
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             'no_hp' => 'required|string|max:15|regex:/^([0-9\s\-\+\(\)]*)$/',
-            'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => 'required|string|min:8',
-            'role' => 'required|in:pasien,dokter',
+            'no_ktp' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
         ]);
+
+        // Hitung jumlah pasien yang sudah ada
+        $jumlahPasien = User::where('role', 'pasien')->count() + 1;
+        
+        // Format no_rm: YYYYMM-XXX
+        $no_rm = now()->format('Ym') . '-' . str_pad($jumlahPasien, 3, '0', STR_PAD_LEFT);
+
+        // // Generate email dan password default
+        // $email = 'pasien' . $jumlahPasien . '@example.com';
+        // $password = bcrypt('password123'); // password default, bisa diganti sesuai kebutuhan
 
         User::create([
             'nama' => $validateData['nama'],
+            'email' => $validateData['email'],
+            'password' => bcrypt($validateData['password']),
             'alamat' => $validateData['alamat'],
             'no_hp' => $validateData['no_hp'],
-            'email' => $validateData['email'],
-            'password' => bcrypt($validateData['password']), // Enkripsi password
-            'role' => $validateData['role'],
+            'no_ktp' => $validateData['no_ktp'],
+            // 'email' => $email,
+            // 'password' => $password,
+            'role' => 'pasien',
+            'no_rm' => $no_rm,
         ]);
 
-        return redirect()->route('login')->with('success', 'Akun berhasil dibuat!');
+        return redirect()->route('login')->with('success', 'Akun pasien berhasil dibuat!');
     }
+
 
     public function logout(Request $request): RedirectResponse
     {
