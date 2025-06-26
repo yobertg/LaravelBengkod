@@ -83,7 +83,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Dokter</h1>
+            <h1>Pasien</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -135,7 +135,7 @@
       </div>
       <div class="form-group">
         <label for="no_rm">No RM</label>
-        <input type="text" name="no_rm" id="no_rm" class="form-control" value="{{ $no_rm }}">
+        <input type="text" name="no_rm" id="no_rm" class="form-control" value="{{ $no_rm }} " readonly>
       </div>
       <button class="btn btn-primary">Tambah Pasien</button>
     </form>

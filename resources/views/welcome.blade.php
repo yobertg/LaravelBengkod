@@ -3,29 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poliklinik Sehat Online - Berobat Mudah dari Rumah</title>
+    <title>Klinik Digital Nusantara - Kesehatan di Ujung Jari</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome untuk ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts (Mengganti Poppins dengan Roboto) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4f46e5;
-            --primary-dark: #3730a3;
-            --secondary-color: #06b6d4;
-            --accent-color: #f59e0b;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f8fafc;
+            --primary-color: #2c5282;
+            --secondary-color: #38b2ac;
+            --accent-color: #ed8936;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #edf2f7;
             --white: #ffffff;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --gradient-main: linear-gradient(90deg, #2b6cb0 0%, #4c51bf 100%);
+            --gradient-alt: linear-gradient(90deg, #ed8936 0%, #f6ad55 100%);
+            --shadow-soft: 0 2px 4px rgba(0, 0, 0, 0.08);
+            --shadow-bold: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
 
         * {
@@ -35,409 +32,223 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: var(--bg-light);
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
-        /* Animated Background */
-        .animated-bg {
+        /* Background Effect */
+        .bg-pattern {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.03;
-        }
-
-        .floating-shapes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .shape {
-            position: absolute;
-            background: var(--gradient-1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .shape:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .shape:nth-child(2) {
-            width: 120px;
-            height: 120px;
-            top: 60%;
-            right: 10%;
-            animation-delay: 2s;
-        }
-
-        .shape:nth-child(3) {
-            width: 60px;
-            height: 60px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+            opacity: 0.05;
+            background: radial-gradient(circle, var(--primary-color) 2px, transparent 2px);
+            background-size: 20px 20px;
         }
 
         /* Navbar Styling */
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 20px 0;
+            background: var(--white);
+            padding: 15px 0;
+            box-shadow: var(--shadow-soft);
             transition: all 0.3s ease;
         }
 
-        .navbar.scrolled {
-            padding: 15px 0;
-            box-shadow: var(--shadow-medium);
-        }
-
         .navbar-brand {
-            font-weight: 800;
-            font-size: 1.8rem;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--primary-color);
         }
 
         .nav-link {
             color: var(--text-dark) !important;
             font-weight: 500;
-            margin-left: 25px;
+            margin-left: 20px;
             position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-1);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
+            transition: color 0.3s ease;
         }
 
         .nav-link:hover {
-            color: var(--primary-color) !important;
-            transform: translateY(-2px);
+            color: var(--secondary-color) !important;
         }
 
         /* Hero Section */
         .hero-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            color: white;
-            padding: 150px 0 100px;
+            background: var(--gradient-main);
+            color: var(--white);
+            padding: 120px 0 80px;
             text-align: center;
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><polygon points="0,0 1000,0 1000,100"/></svg>');
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
         }
 
         .hero-section h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease;
-            line-height: 1.2;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            animation: slideIn 1s ease-out;
         }
 
         .hero-section .subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease 0.2s;
-            animation-fill-mode: both;
-            font-weight: 400;
-        }
-
-        .hero-buttons {
-            animation: fadeInUp 1s ease 0.4s;
-            animation-fill-mode: both;
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: slideIn 1s ease-out 0.3s both;
         }
 
         .btn-hero {
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            margin: 10px;
+            padding: 12px 35px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 30px;
+            margin: 8px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
         .btn-hero-primary {
-            background: var(--white);
-            color: var(--primary-color);
-            border: 2px solid var(--white);
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
         }
 
         .btn-hero-primary:hover {
-            background: transparent;
-            color: var(--white);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-medium);
+            background: var(--primary-color);
+            transform: scale(1.05);
         }
 
         .btn-hero-outline {
             background: transparent;
             color: var(--white);
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            border: 2px solid var(--white);
         }
 
         .btn-hero-outline:hover {
             background: var(--white);
             color: var(--primary-color);
-            transform: translateY(-3px);
         }
 
         /* Access Cards Section */
         .access-section {
-            padding: 100px 0;
+            padding: 80px 0;
             background: var(--white);
-            position: relative;
-        }
-
-        .access-section::before {
-            content: '';
-            position: absolute;
-            top: -50px;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            clip-path: polygon(0 50px, 100% 0, 100% 100%, 0 100%);
         }
 
         .access-card {
             background: var(--white);
-            border-radius: 20px;
-            padding: 40px 30px;
+            border-radius: 15px;
+            padding: 30px;
             text-align: center;
-            box-shadow: var(--shadow-light);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            height: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .access-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--gradient-1);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .access-card:hover::before {
-            transform: scaleX(1);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
         }
 
         .access-card:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--shadow-heavy);
-        }
-
-        .access-card:nth-child(1) .card-icon {
-            background: var(--gradient-1);
-        }
-
-        .access-card:nth-child(2) .card-icon {
-            background: var(--gradient-2);
-        }
-
-        .access-card:nth-child(3) .card-icon {
-            background: var(--gradient-3);
+            transform: scale(1.03);
+            box-shadow: var(--shadow-bold);
         }
 
         .card-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: var(--gradient-alt);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 2rem;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
             color: var(--white);
         }
 
         .access-card h4 {
-            font-weight: 700;
+            font-weight: 600;
             color: var(--text-dark);
-            margin-bottom: 15px;
-            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
         }
 
         .access-card p {
             color: var(--text-light);
-            margin-bottom: 30px;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         .btn-access {
-            background: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 500;
             text-decoration: none;
-            display: inline-block;
+            transition: all 0.3s ease;
         }
 
         .btn-access:hover {
-            background: var(--primary-color);
-            color: var(--white);
-            transform: translateY(-2px);
-            text-decoration: none;
+            background: var(--secondary-color);
+            transform: scale(1.05);
         }
 
         /* Features Section */
         .features-section {
-            padding: 100px 0;
+            padding: 80px 0;
             background: var(--bg-light);
         }
 
         .feature-card {
             background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-soft);
             text-align: center;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-light);
-            margin-bottom: 30px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(79, 70, 229, 0.1), transparent);
-            animation: rotate 8s linear infinite;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
+            transition: all 0.3s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-medium);
+            transform: scale(1.03);
+            box-shadow: var(--shadow-bold);
         }
 
         .feature-card i {
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            font-size: 3rem;
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
         }
 
         .feature-card h4 {
-            font-weight: 700;
+            font-weight: 600;
             color: var(--text-dark);
-            margin-bottom: 15px;
         }
 
         .feature-card p {
             color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            line-height: 1.5;
         }
 
         /* Testimonials Section */
         .testimonials-section {
-            padding: 100px 0;
+            padding: 80px 0;
             background: var(--white);
         }
 
         .testimonial-card {
             background: var(--bg-light);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-light);
-            margin-bottom: 30px;
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            font-size: 4rem;
-            color: var(--primary-color);
-            opacity: 0.3;
-            font-family: serif;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
         }
 
         .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
+            transform: scale(1.02);
         }
 
         .testimonial-card p {
             font-style: italic;
             color: var(--text-light);
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 2;
+            margin-bottom: 15px;
         }
 
         .testimonial-card h5 {
@@ -447,165 +258,128 @@
 
         /* Contact Section */
         .contact-section {
-            padding: 100px 0;
+            padding: 80px 0;
             background: var(--bg-light);
         }
 
         .contact-form {
             background: var(--white);
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-medium);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-bold);
         }
 
         .contact-section .form-control {
-            margin-bottom: 25px;
-            border-radius: 15px;
-            padding: 15px 20px;
-            border: 2px solid #e5e7eb;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
             transition: all 0.3s ease;
-            font-size: 1rem;
         }
 
         .contact-section .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(56, 178, 172, 0.1);
         }
 
         .btn-submit {
-            background: var(--gradient-1);
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
+            background: var(--gradient-main);
             color: var(--white);
+            padding: 12px 35px;
+            border-radius: 30px;
+            font-weight: 500;
+            border: none;
             transition: all 0.3s ease;
         }
 
         .btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-medium);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-bold);
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-            color: white;
-            padding: 50px 0 30px;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 40px 0;
             text-align: center;
-            position: relative;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
         }
 
         /* Section Titles */
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 800;
+            font-size: 2.2rem;
+            font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             position: relative;
-            display: inline-block;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient-1);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-alt);
             border-radius: 2px;
         }
 
         /* Animations */
-        @keyframes fadeInUp {
+        @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateX(-20px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+                transform: translateX(0);
             }
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero-section h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             .hero-section .subtitle {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
             .section-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             .btn-hero {
-                padding: 12px 30px;
-                font-size: 1rem;
-            }
-            .access-card {
-                margin-bottom: 30px;
+                padding: 10px 25px;
+                font-size: 0.9rem;
             }
             .contact-form {
-                padding: 30px;
+                padding: 25px;
             }
         }
 
         @media (max-width: 576px) {
             .hero-section {
-                padding: 120px 0 80px;
+                padding: 100px 0 60px;
             }
             .hero-section h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
-            .access-section {
-                padding: 80px 0;
-            }
-            .features-section {
-                padding: 80px 0;
+            .access-section, .features-section, .testimonials-section, .contact-section {
+                padding: 60px 0;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="animated-bg">
-        <div class="floating-shapes">
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-        </div>
-    </div>
+    <!-- Background Pattern -->
+    <div class="bg-pattern"></div>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-heartbeat me-2"></i>Poliklinik Sehat Online
+                <i class="fas fa-stethoscope me-2"></i>Klinik Digital Udinus
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -635,13 +409,11 @@
     <!-- Hero Section -->
     <section class="hero-section" id="home">
         <div class="container">
-            <div class="hero-content">
-                <h1>Revolusi Kesehatan Digital</h1>
-                <p class="subtitle">Konsultasi medis profesional dari kenyamanan rumah Anda dengan teknologi terdepan</p>
-                <div class="hero-buttons">
-                    <a href="#access" class="btn btn-hero btn-hero-primary">Mulai Konsultasi</a>
-                    <a href="#features" class="btn btn-hero btn-hero-outline">Pelajari Lebih Lanjut</a>
-                </div>
+            <h1>Kesehatan Digital Modern</h1>
+            <p class="subtitle">Akses layanan medis profesional dari rumah Anda dengan teknologi canggih</p>
+            <div class="hero-buttons">
+                <a href="#access" class="btn btn-hero btn-hero-primary">Mulai Konsultasi</a>
+                <a href="#features" class="btn btn-hero btn-hero-outline">Lihat Fitur</a>
             </div>
         </div>
     </section>
@@ -649,16 +421,16 @@
     <!-- Access Section -->
     <section class="access-section" id="access">
         <div class="container">
-            <h2 class="text-center section-title">Pilih Akses Anda</h2>
+            <h2 class="text-center section-title">Pilih Peran Anda</h2>
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="access-card">
                         <div class="card-icon">
                             <i class="fas fa-user-plus"></i>
                         </div>
-                        <h4>Daftar Sebagai Pasien</h4>
-                        <p>Bergabunglah dengan ribuan pasien yang telah merasakan kemudahan konsultasi online. Daftar sekarang dan dapatkan akses ke layanan kesehatan terbaik.</p>
-                        <a href="/register" class="btn-access">Daftar Sekarang</a>
+                        <h4>Registrasi Pasien</h4>
+                        <p>Gabung dengan jutaan pengguna yang menikmati konsultasi online mudah. Daftar sekarang untuk layanan kesehatan terbaik.</p>
+                        <a href="/register" class="btn-access">Daftar</a>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -666,9 +438,9 @@
                         <div class="card-icon">
                             <i class="fas fa-user-md"></i>
                         </div>
-                        <h4>Login Dokter</h4>
-                        <p>Portal khusus untuk tenaga medis profesional. Akses dashboard dokter untuk mengelola jadwal konsultasi dan rekam medis pasien.</p>
-                        <a href="/login" class="btn-access">Login Dokter</a>
+                        <h4>Masuk Dokter</h4>
+                        <p>Akses portal khusus dokter untuk mengatur jadwal konsultasi dan mengelola data pasien dengan mudah.</p>
+                        <a href="/login" class="btn-access">Masuk Dokter</a>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -676,9 +448,9 @@
                         <div class="card-icon">
                             <i class="fas fa-cog"></i>
                         </div>
-                        <h4>Login Administrator</h4>
-                        <p>Panel kontrol sistem untuk administrator. Kelola seluruh aspek platform, monitoring, dan konfigurasi sistem poliklinik online.</p>
-                        <a href="/login" class="btn-access">Login Admin</a>
+                        <h4>Masuk Admin</h4>
+                        <p>Kelola platform, pantau sistem, dan atur konfigurasi layanan klinik digital secara efisien.</p>
+                        <a href="/login" class="btn-access">Masuk Admin</a>
                     </div>
                 </div>
             </div>
@@ -688,48 +460,48 @@
     <!-- Features Section -->
     <section class="features-section" id="features">
         <div class="container">
-            <h2 class="text-center section-title">Mengapa Memilih Kami?</h2>
+            <h2 class="text-center section-title">Keunggulan Kami</h2>
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="feature-card">
                         <i class="fas fa-video"></i>
-                        <h4>Konsultasi HD Video</h4>
-                        <p>Berkomunikasi dengan dokter melalui video call berkualitas tinggi dengan teknologi enkripsi end-to-end untuk menjamin privasi Anda.</p>
+                        <h4>Video Konsultasi</h4>
+                        <p>Berbual dengan dokter melalui video call aman dengan kualitas tinggi untuk privasi terjamin.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-card">
                         <i class="fas fa-clock"></i>
-                        <h4>Layanan 24/7</h4>
-                        <p>Akses layanan kesehatan kapan saja, di mana saja. Tim medis kami siap melayani Anda setiap hari tanpa terkecuali.</p>
+                        <h4>Akses 24 Jam</h4>
+                        <p>Layanan kesehatan tersedia kapan saja, di mana saja, dengan tim medis siap setiap saat.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-card">
                         <i class="fas fa-prescription-bottle-alt"></i>
-                        <h4>E-Prescription</h4>
-                        <p>Terima resep digital langsung di smartphone Anda dan dapatkan obat melalui layanan antar apotek partner kami.</p>
+                        <h4>Resep Digital</h4>
+                        <p>Dapatkan resep elektronik langsung di perangkat Anda dengan pengiriman obat dari apotek mitra.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-card">
                         <i class="fas fa-shield-alt"></i>
-                        <h4>Data Terenkripsi</h4>
-                        <p>Keamanan data medis Anda adalah prioritas utama dengan sistem enkripsi tingkat militer dan sertifikasi ISO 27001.</p>
+                        <h4>Keamanan Data</h4>
+                        <p>Data medis Anda dilindungi dengan enkripsi canggih dan standar keamanan internasional.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-card">
                         <i class="fas fa-mobile-alt"></i>
                         <h4>Aplikasi Mobile</h4>
-                        <p>Nikmati pengalaman yang optimal dengan aplikasi mobile yang user-friendly dan dapat diakses di semua perangkat.</p>
+                        <p>Pengalaman pengguna yang nyaman melalui aplikasi mobile yang mendukung semua perangkat.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-card">
                         <i class="fas fa-heartbeat"></i>
-                        <h4>Monitoring Kesehatan</h4>
-                        <p>Pantau kondisi kesehatan Anda secara real-time dengan integrasi perangkat wearable dan laporan kesehatan berkala.</p>
+                        <h4>Pantau Kesehatan</h4>
+                        <p>Lacak kesehatan Anda secara langsung dengan integrasi perangkat wearable dan laporan rutin.</p>
                     </div>
                 </div>
             </div>
@@ -739,24 +511,24 @@
     <!-- Testimonials Section -->
     <section class="testimonials-section" id="testimonials">
         <div class="container">
-            <h2 class="text-center section-title">Testimoni Pasien</h2>
+            <h2 class="text-center section-title">Ulasan Pengguna</h2>
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="testimonial-card">
-                        <p>Platform yang luar biasa! Konsultasi dengan dr. Sarah sangat membantu dan pelayanannya sangat profesional. Saya bisa mendapatkan diagnosis tanpa harus keluar rumah.</p>
-                        <h5>Ani Kurniawati, 34 tahun</h5>
+                        <p>Layanan luar biasa! Konsultasi dengan dokter sangat membantu, profesional, dan praktis tanpa harus ke klinik.</p>
+                        <h5>Siti Aminah, 35 tahun</h5>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="testimonial-card">
-                        <p>Sebagai pekerja yang sibuk, layanan ini sangat memudahkan saya. Bisa konsultasi di sela-sela waktu istirahat dan langsung dapat resep digital. Sangat efisien!</p>
-                        <h5>Budi Santoso, 40 tahun</h5>
+                        <p>Sangat cocok untuk pekerja sibuk seperti saya. Konsultasi cepat dan resep digital sangat memudahkan!</p>
+                        <h5>Agus Pratama, 42 tahun</h5>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="testimonial-card">
-                        <p>Fitur monitoring kesehatan sangat membantu saya mengontrol diabetes. Dokter bisa melihat data real-time dan memberikan saran yang tepat setiap saat.</p>
-                        <h5>Citra Dewi, 28 tahun</h5>
+                        <p>Fitur pemantauan kesehatan membantu saya mengelola kondisi kronis dengan saran dokter yang akurat.</p>
+                        <h5>Rina Lestari, 29 tahun</h5>
                     </div>
                 </div>
             </div>
@@ -766,24 +538,24 @@
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container">
-            <h2 class="text-center section-title">Hubungi Kami</h2>
+            <h2 class="text-center section-title">Kontak Kami</h2>
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="contact-form">
                         <form action="/submit" method="POST">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Nama Lengkap" required>
+                                    <input type="text" class="form-control" placeholder="Nama Anda" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="email" class="form-control" placeholder="Email" required>
+                                    <input type="email" class="form-control" placeholder="Alamat Email" required>
                                 </div>
                             </div>
                             <input type="tel" class="form-control" placeholder="Nomor Telepon" required>
-                            <textarea class="form-control" rows="5" placeholder="Pesan atau Pertanyaan Anda..." required></textarea>
+                            <textarea class="form-control" rows="5" placeholder="Tulis Pesan Anda..." required></textarea>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-submit">
-                                    <i class="fas fa-paper-plane me-2"></i>Kirim Pesan
+                                    <i class="fas fa-paper-plane me-2"></i>Kirim
                                 </button>
                             </div>
                         </form>
@@ -796,18 +568,14 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="mb-3">
-                        <i class="fas fa-heartbeat me-2"></i>
-                        <strong>Poliklinik Sehat Online</strong>
-                    </p>
-                    <p>© 2025 Poliklinik Sehat Online. Semua hak dilindungi undang-undang.</p>
-                    <p class="mt-3">
-                        <small>Terdaftar dan diawasi oleh Kementerian Kesehatan Republik Indonesia</small>
-                    </p>
-                </div>
-            </div>
+            <p class="mb-3">
+                <i class="fas fa-stethoscope me-2"></i>
+                <strong>Klinik Digital Nusantara</strong>
+            </p>
+            <p>© 2025 Klinik Digital Nusantara. Hak cipta dilindungi.</p>
+            <p class="mt-3">
+                <small>Diawasi oleh Kementerian Kesehatan Republik Indonesia</small>
+            </p>
         </div>
     </footer>
 
@@ -815,16 +583,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -839,28 +597,32 @@
             });
         });
 
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
+        // Scroll animation for cards
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.2 });
 
-        // Observe elements for animation
-        document.querySelectorAll('.feature-card, .access-card, .testimonial-card').forEach(el => {
+        document.querySelectorAll('.access-card, .feature-card, .testimonial-card').forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            el.style.transform = 'translateX(-20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            el.classList.add('animate-card');
             observer.observe(el);
         });
+
+        // Add visible class for animation
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            .animate-card.visible {
+                opacity: 1 !important;
+                transform: translateX(0) !important;
+            }
+        `;
+        document.head.appendChild(styleSheet);
 
         // Form submission animation
         const form = document.querySelector('form');
@@ -873,39 +635,29 @@
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Mengirim...';
                 submitBtn.disabled = true;
                 
-                // Simulate form submission
                 setTimeout(() => {
-                    submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Terkirim!';
-                    submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                    submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Berhasil!';
+                    submitBtn.style.background = 'linear-gradient(90deg, #38b2ac 0%, #2c5282 100%)';
                     
                     setTimeout(() => {
                         submitBtn.innerHTML = originalText;
                         submitBtn.disabled = false;
                         submitBtn.style.background = '';
                         form.reset();
-                    }, 2000);
-                }, 1500);
+                    }, 1500);
+                }, 1000);
             });
         }
 
-        // Add particle effect on card hover
-        document.querySelectorAll('.access-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-15px) scale(1.02)';
+        // Hover effect for cards
+        document.querySelectorAll('.access-card, .feature-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'scale(1.03)';
             });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
             });
         });
-
-        // Dynamic gradient background
-        let gradientAngle = 0;
-        setInterval(() => {
-            gradientAngle += 1;
-            document.querySelector('.hero-section').style.background = 
-                `linear-gradient(${gradientAngle}deg, #667eea 0%, #764ba2 50%, #f093fb 100%)`;
-        }, 100);
     </script>
 </body>
 </html>
